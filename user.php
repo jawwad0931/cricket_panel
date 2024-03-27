@@ -5,7 +5,7 @@ include "includes/header.php";
 // when user already logged in and i want to go back login page not possible because i am already logged 
 // in its redirect me to dashboard page
 session_start();
-if(isset($_SESSION['user_auth'])){
+if (isset($_SESSION['user_auth'])) {
     header("location: Userdash.php");
     exit(); // Ensure that script execution stops after redirect
 }
@@ -23,13 +23,13 @@ if(isset($_SESSION['user_auth'])){
 <style>
     #mycard1 {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        width: 600px;
+        width: 643px;
         /* margin-left: 135px !important; */
     }
 
     #mycard2 {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        width: 600px;
+        width: 643px;
         /* margin-left: 135px !important; */
     }
 </style>
@@ -39,29 +39,31 @@ if(isset($_SESSION['user_auth'])){
         <div class="row" class="row_margins">
             <div class="col-12 col-lg-7 col-md-12 col-sm-12 d-flex justify-content-center mt-4">
                 <div class="card border m-2 bg-light" id="mycard1">
-                     <!-- this code check password and confirm password -->
-                    <?php 
-                        if(isset($_SESSION['invalid_user'])){
-                            echo '<div class="alert alert-danger" role="alert">' . $_SESSION['invalid_user'] . '</div>';
-                            unset($_SESSION['invalid_user']);
-                        }
+                    <!-- this code check password and confirm password -->
+                    <?php
+                    if (isset($_SESSION['invalid_user'])) {
+                        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['invalid_user'] . '</div>';
+                        unset($_SESSION['invalid_user']);
+                    }
                     ?>
                     <form action="usercode.php" method="post" class="row g-3 p-4 needs-validation" novalidate>
                         <div class="col-md-12">
-                            <label for="validationCustom01" class="form-label">User Name</label>
-                            <input type="text" class="form-control" id="validationCustom01" name="name" required>
+                            <label for="validationCustom01" class="form-label text-secondary">User Name</label>
+                            <input type="text" class="form-control" id="validationCustom01"
+                                placeholder="Enter User Name" name="name" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="validationCustom02" class="form-label">User Password</label>
+                            <label for="validationCustom02" class="form-label text-secondary">User Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Enter your password" required>
                             </div>
-                            <!-- <div id="passwordHelpBlock" class="form-text">
-                                Your password must be at least 8 characters long and should include uppercase, lowercase letters, numbers, and special characters.
-                            </div> -->
+                            <div id="passwordHelpBlock" class="form-text text-secondary">
+                                your password must be included in alphabet
+                            </div>
                         </div>
                         <div class="col-12">
                             <div class="d-grid gap-2">
@@ -76,8 +78,8 @@ if(isset($_SESSION['user_auth'])){
             <div class="col-12 col-lg-7 col-md-12 col-sm-12 d-flex justify-content-center">
                 <div class="card border m-2 bg-light" id="mycard2">
                     <div class="m-4">
-                        <p>Don't have an account yet?</p>
-                        <a href="sign.php" class="text-decoration-none">SignUp!</a>
+                        <p class="text-secondary">Don't have an account yet?</p>
+                        <a href="sign.php" class="text-decoration-none text-secondary">SignUp!</a>
                     </div>
                 </div>
             </div>
@@ -93,28 +95,41 @@ if(isset($_SESSION['user_auth'])){
         crossorigin="anonymous"></script>
     <!-- Script tag end -->
 
-        <script>
+    <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
-                'use strict'
+        (function () {
+            'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
 
             // Loop over them and prevent submission
             Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
-})()
-    </script>
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+
+        // function checkPasswordLength(input) {
+        //     var password = input.value;
+        //     var passwordHelpBlock = document.getElementById("passwordHelpBlock");
+
+        //     if (password.length >= 8) {
+        //         passwordHelpBlock.style.display = "none"; // Hide the validation message
+        //     } else {
+        //         passwordHelpBlock.style.display = "block"; // Show the validation message
+        //     }
+        // }
+    </script> 
+    <!-- <script src="main.js"></script> -->
 </body>
 
 </html>

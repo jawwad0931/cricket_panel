@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Buenard:wght@400;700&family=Macondo&family=Sevillana&family=Zeyada&display=swap');
+
 
 *, ::after,
 ::before {
@@ -6,17 +7,20 @@
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
     font-size: 0.875rem;
     opacity: 1;
     overflow-y: scroll;
     margin: 0;
+    font-family: "Buenard", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 a {
     cursor: pointer;
     text-decoration: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Buenard", serif;
+        font-weight: 400;
 }
 
 li{
@@ -24,7 +28,8 @@ li{
 }
 
 h4{
-    font-family: 'Poppins', sans-serif;
+    font-family: "Buenard", serif;
+        font-style: normal;
     font-size: 1.275rem;
     color: var(--bs-emphasis-color);
 }

@@ -22,18 +22,7 @@ include "includes/header5.php";
 
 <!-- Php Code for retrieving data from career status table -->
 <?php 
-   //  include "config/conn.php";
-   //  $id = $_SESSION['id'];
-   //  $slt_record = "SELECT * FROM `career_status` where `Id` = $id"; 
-   //  $check_query = mysqli_query($conn, $slt_record); 
-   //  if($row = mysqli_fetch_assoc($check_query)){
-   //      $Matches = $row['Matches'];
-   //  } else {
-   //      echo "Profile not found";
-   //  }
-
    $user_id = $_SESSION['user_auth']['id'];
-   echo $user_id;
    // Retrieve user profile information
    $query = "SELECT * FROM career_Status WHERE User_id_fk = $user_id";
    $result = mysqli_query($conn, $query);
@@ -57,12 +46,12 @@ include "includes/header5.php";
     <div class="row m-4 d-flex align-items-center justify-content-end">
         <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-end justify-content-end mt-3">
             <div class="row career_Section">
-               <div class="col-8">
+               <div class="col-8 p-4">
                 <h1 class="text-start text-light"><?php echo $_SESSION['user_auth']['Name']; ?></h1><span class="text-light fw-bold"><?php echo $_SESSION['user_auth']['playing_role']; ?></span><br>
                 <h3 class="text-start text-light">Career Status</h3>
             </div>
-            <div class="col-4">
-                <img src="images/kallis.webp" class="border border-light rounded-circle" height="80%" width="70%" alt="">
+            <div class="col-4 d-flex align-items-center">
+                <img src="images/kallis.webp" class="border border-light rounded-circle" height="65%" width="70%" alt="">
             </div>
                     <div class="d-flex m-2">
                        <div class="w-75 border bg-success text-light p-2 fw-bold">Matches</div>

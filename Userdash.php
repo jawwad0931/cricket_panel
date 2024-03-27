@@ -5,6 +5,9 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
+    <!-- favicon -->
+    <!-- ./ its mean outside the directory and then ./images it mean reach inside the images directory and access image -->
+    <link rel="icon" href="./images/logo.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard Admin Boostrap 5</title>
@@ -15,38 +18,72 @@
     <!-- css link -->
     <link rel="stylesheet" href="Asset/style.css">
 </head>
+<style>
+    .img_store{
+        height: 100px;
+        width: 100px;
+    }
+
+    .img_store img{
+        height: 100%;
+        width: 100%;
+        
+    }
+</style>
 <body>
+    <!-- when user is not login and you want to  -->
+    <?php
+        if(!isset($_SESSION['user_auth']['Name'])){
+            header("location: user.php");
+        }
+    ?>
     <div class="wrapper" style="">
         <asside id="sidebar">
             <!-- content for sidebar -->
             <div class="h-100">
                 <div class="sidebar-logo">
-                    <a href="#">Royal Blaster</a>
+                <img src="images/logo.png" class="rounded-circle" height="40px" width="40px" alt="">
+                    <a href="#" class="text-secondary">Royal Blaster</a>
                 </div><!--end logo  -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="#" class="sidebar-link text-secondary">
                             <!-- add icon here -->
                             User Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
+                        <a href="#" class="sidebar-link collapsed text-secondary" data-bs-target="#pages" data-bs-toggle="collapse"
                             aria-expanded="false">
                             Pages </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collpase" data-bs-target="#sidebar">
                             <li class="sidebar-item">
-                                <a href="career.php" class="sidebar-link">
-                                    career status
+                                <a href="player-profile.php" class="sidebar-link text-secondary">
+                                    Player Profile
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">
-                                    Update Profile
+                                <a href="batsmanRecord.php" class="sidebar-link text-secondary">
+                                    Batsman career status
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">
+                                <a href="bowlerRecord.php" class="sidebar-link text-secondary">
+                                    Bowler career status
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="rankingsRecord2.php" class="sidebar-link text-secondary">
+                                    Bowler ranking
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="rankingsRecord.php" class="sidebar-link text-secondary">
+                                    Batsman ranking
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="scheduleRecord.php" class="sidebar-link text-secondary">
                                     Matches Schedule
                                 </a>
                             </li>
@@ -72,9 +109,9 @@
                                 ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item text-secondary">Profile</a>
                                 <form action="usercode.php" method="post">
-                                    <button type="submit" name="logout" class="dropdown-item">Logout</button>
+                                    <button type="submit" name="logout" class="dropdown-item text-secondary">Logout</button>
                                 </form>
                                 </a>
                             </div>
@@ -85,7 +122,27 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h4>User Dashboard</h4>
+                        <h4 class="text-secondary">User Dashboard</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 d-flex">
+                                    <div class="card flex-fill border-0 rounded bg-light illustration">
+                                        <div class="card-body p-3 d-flex flex-fill">
+                                            <div class="row g-0 w-100">
+                                                <div class="col">
+                                                    <div class="p-3 m-1 d-flex align-items-center">
+                                                        <div class="img_store">
+                                                        <img src="images/cricket-player.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <a href="player-profile.php" class="text-decoration-none text-dark fs-3">Player Profile</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
                     </div>
                     <div class="row">
                         <!-- <div class="col-12 col-md-6 d-flex">
@@ -109,21 +166,115 @@
                             </div>
                         </div> -->
                         <div class="col-12 col-md-6 d-flex">
-                            <div class="card flex-fill border-0 illustration">
+                            <div class="card flex-fill border-0 rounded bg-light illustration">
                                 <button class="btn-close text-end z-1 position-absolute"
                                     onclick="closeCard(this)"></button>
                                 <div class="card-body p-3 d-flex flex-fill">
                                     <div class="row g-0 w-100">
                                         <div class="col">
                                             <div class="p-3 m-1">
-                                                <h4>Welcome <?php echo $_SESSION['user_auth']['Name'] ?></h4>
-                                                <p class="mb-0">User Dashboard</p>
+                                                <h4 class="text-secondary">Welcome <?php echo $_SESSION['user_auth']['Name'] ?></h4>
+                                                <p class="mb-0 text-secondary">User Dashboard</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 col-md-6 d-flex">
+                            <div class="card flex-fill border-0 rounded bg-light illustration">
+                                <div class="card-body p-3 d-flex flex-fill">
+                                    <div class="row g-0 w-100">
+                                        <div class="col">
+                                            <div class="p-3 m-1 d-flex align-items-center">
+                                                <div class="img_store">
+                                                <img src="images/batsman.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <a href="batsmanRecord.php" class="text-decoration-none text-dark fs-3">Batsman Career list</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 d-flex">
+                                <div class="card flex-fill border-0 rounded bg-light illustration">
+                                    <div class="card-body p-3 d-flex flex-fill">
+                                        <div class="row g-0 w-100">
+                                            <div class="col">
+                                                <div class="p-3 m-1 d-flex align-items-center">
+                                                    <div class="img_store">
+                                                    <img src="images/bowler.png" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <a href="bowlerRecord.php" class="text-decoration-none text-dark fs-3">Bowlers Career list</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-12 col-md-6 d-flex">
+                                <div class="card flex-fill border-0 rounded bg-light illustration">
+                                    <div class="card-body p-3 d-flex flex-fill">
+                                        <div class="row g-0 w-100">
+                                            <div class="col">
+                                                <div class="p-3 m-1 d-flex align-items-center">
+                                                    <div class="img_store">
+                                                    <img src="images/cricket-ranking.png" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <a href="rankingsRecord.php" class="text-decoration-none text-dark fs-3">Batsman Ranking</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-12 col-md-6 d-flex">
+                                <div class="card flex-fill border-0 rounded bg-light illustration">
+                                    <div class="card-body p-3 d-flex flex-fill">
+                                        <div class="row g-0 w-100">
+                                            <div class="col">
+                                                <div class="p-3 m-1 d-flex align-items-center">
+                                                    <div class="img_store">
+                                                    <img src="images/cricket-ranking.png" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <a href="rankingsRecord2.php" class="text-decoration-none text-dark fs-3">Bowlers Ranking</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex">
+                                <div class="card flex-fill border-0 rounded bg-light illustration">
+                                    <div class="card-body p-3 d-flex flex-fill">
+                                        <div class="row g-0 w-100">
+                                            <div class="col">
+                                                <div class="p-3 m-1 d-flex align-items-center">
+                                                    <div class="img_store">
+                                                    <img src="images/cricket-schedule.png" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <a href="scheduleRecord.php" class="text-decoration-none text-dark fs-3">Matches Schedule</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
                     </div>
                     <!-- add component here -->
                 </div>

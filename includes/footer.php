@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sevillana&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <!-- Style -->
@@ -16,6 +20,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    font-family: "Buenard", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 </style>
 <!-- Style -->
@@ -26,11 +33,7 @@
                 <ul class="list list-unstyled no-list-style">
                     <li class="list-item liststyle-none m-3">
                         <h5 class="text-light fw-bold">About Royal Blaster</h5>
-                        <p class="text-light">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias
-                            iste sequi vero quibusdam molestias, quis praesentium nostrum repellat, quo blanditiis non
-                            illo dolorem recusandae neque debitis explicabo eaque quod! Vel, quae! Iusto, enim.
-                            Corrupti, hic aspernatur! Sit eveniet ab magnam delectus, placeat natus fugit facilis. Eaque
-                            obcaecati deleniti saepe labore.</p>
+                        <p class="text-light">Share the mission or purpose of your website. For instance, "Our mission at Royal Blaster is to provide cricket fans with an immersive and engaging experience, bringing them closer to the game they love.".</p>
                     </li>
                 </ul>
             </div>
