@@ -1,6 +1,6 @@
 
 <?php
-$conn = mysqli_connect('localhost:3306','root','','cricket');
+$conn = mysqli_connect('localhost:3306','root','','royal-blaster');
 if(!$conn){
     die('Error Found');
 }else{

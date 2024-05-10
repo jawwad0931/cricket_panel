@@ -1,0 +1,12 @@
+    if (isset($_GET['bat_update_id'])) {
+        $Id_update = $_GET['bat_update_id'];
+        // echo "ID being fetched: $Id_update"; // Output the ID
+        $sql = "SELECT * FROM `batting_ranks` WHERE Id = $Id_update";
+        $check_sql = mysqli_query($conn, $sql);
+        if ($row = mysqli_fetch_assoc($check_sql)) {
+            $Ranks = $row['Ranks'];
+            $batsman_photo = $row['batsman_photo'];
+            $Batsman_name = $row['Batsman_name']; 
+            $rating = $row['rating'];
+        }
+    }

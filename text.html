@@ -1,0 +1,69 @@
+<?php
+session_start();
+include 'config/conn.php';
+include 'includes/header.php';
+
+if (isset($_GET['bat_update_id'])) {
+    $Id_update = $_GET['bat_update_id'];
+    // echo "ID being fetched: $Id_update"; // Output the ID
+    $sql = "SELECT * FROM `batting_ranks` WHERE Id = $Id_update";
+    $check_sql = mysqli_query($conn, $sql);
+    if ($row = mysqli_fetch_assoc($check_sql)) {
+        $Ranks = $row['Ranks'];
+        $batsman_photo = $row['batsman_photo'];
+        $Batsman_name = $row['Batsman_name']; 
+        $rating = $row['rating'];
+    }
+}
+
+
+
+// for update data
+if (isset ($_GET['update_batsman_rank'])) {
+    $id = $_GET['update_batsman_rank'];
+    $Ranks = $_POST['Ranks'];
+    $Batsman_name = $_POST['Batsman_name'];
+    $rating = $_POST['rating'];
+    // Image Update code 
+    $new_image = $_FILES['new_image']['name'];
+    $old_image = $_POST['$batsman_photo'];
+
+    // yahan old aur new image check karengay
+    if($new_image != ''){
+        $update_file = $_FILES['new_image']['name'];
+    }else{
+        $update_file = $old_image;
+    }
+
+    // agar file pehlay se folder mai exist karti hai tou ye error ayega warna update hojayega yani else ka code 
+    if(file_exists("images/" . $_FILES['new_image']['name'])){
+        $filename = $_FILES['new_image']['name'];
+        $_SESSION['msg']="image already exist";
+        header("location: batsmanranking.php");
+    }else{
+        
+    }
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+$batsman_rank_update = "UPDATE `batting_ranks` SET `Ranks`='$Ranks',`batsman_photo`='$folder',`Batsman_name`='$Batsman_name',`rating`='$rating' WHERE Id = $id";
+$check_query = mysqli_query($conn, $batsman_rank_update);
+if (!$check_query) {
+    echo 'Error show';
+} else {
+    $_SESSION['update'] = "Batsman Rank data has been updated";
+    header("location: batsmanranking.php");
+    exit (0);
+}

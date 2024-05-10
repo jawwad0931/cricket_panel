@@ -1,5 +1,5 @@
 <?php
-include "includes/header4.php";
+include "includes/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,160 +11,216 @@ include "includes/header4.php";
     <title>Document</title>
 </head>
 <style>
-    #mycard1 {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        width: 600px;
-        /* margin-left: 135px !important; */
+    .custom-bottom-border {
+    border: none;
+    border-bottom: 1px solid #000; /* You can adjust the color and thickness as needed */
+    background-color: transparent;
+    color: white;
+}
+    body {
+        background-color: #000000;
     }
 
-    #mycard2 {
+    #mycard1 {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        width: 600px;
-        /* margin-left: 135px !important; */
+        width: 450px;
+    }
+
+    #img_logo {
+        border-radius: 50px;
+    }
+
+    .row_margins {
+        height: 700px;
+    }
+
+    /* for icon */
+    .ico {
+        color: #fff !important;
+    }
+
+    .form_bg {
+        background: linear-gradient(to bottom, #000000, #0000FF);
+        /* Black to blue */
+        border-radius: 10px;
+    }
+
+    /* below the form div */
+    .second_div_bg {
+        background: linear-gradient(to bottom, #000000, #0000FF);
+        /* Black to blue */
+    }
+
+    /* Style the placeholder text color */
+    .form-control::placeholder {
+        color: white;
+    }
+
+    /* borders */
+    .form-control {
+        border: none;
+        border-bottom: 1px solid #fff;
+    }
+
+    /* for button */
+     /* for button */
+     .btn {
+      position: relative;
+      display: inline-block;
+      margin: 10px;
+      color: #fff;
+      font-size: 20px !important;
+      letter-spacing: 2px;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-sizing: border-box;
+      height: 35px;
+      width: 80px;
+      padding-bottom: 35px;
+    }
+
+    .btn--liquidBtn {
+      overflow: hidden;
+    }
+
+    .btn--liquidBtn span {
+      position: relative;
+      z-index: 1;
+      font-size: 15px;
+    }
+
+    .btn--liquidBtn:hover .btn--liquid {
+      top: -120px;
+    }
+
+    .btn--liquid {
+      position: absolute;
+      top: -80px;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      background: #4973ff;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+      transition: 0.5s;
+    }
+
+    .btn--liquid::before,
+    .btn--liquid::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      transform: translate(-50%, -75%);
+    }
+
+    .btn--liquid::before {
+      border-radius: 45%;
+      background: rgba(20, 20, 20, 1);
+      animation: liquidAnimation 10s linear infinite;
+    }
+
+    .btn--liquid::after {
+      border-radius: 40%;
+      background: rgba(20, 20, 20, 0.5);
+      animation: liquidAnimation 10s linear infinite;
+    }
+
+    @keyframes liquidAnimation {
+      0% {
+        transform: translate(-50%, -75%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -75%) rotate(360deg);
+      }
     }
 </style>
 
 <body>
-    <div class="container-fluid">
-        <div class="row" class="row_margins">
-            <div class="col-12 col-lg-7 col-md-12 col-sm-12 d-flex justify-content-center mt-4">
-                <div class="card border m-2 bg-light" id="mycard2">
-                    <div class="m-4">
-                        <h2>Sign Up</h2>
-                        <p class="tw-light">Please fill in this form to create an account.</p>
+    <div class="container-fluid" style="">
+        <div class="row mt-3 d-flex justify-content-center" data-aos="slide-down" data-aos-duration="2000">
+            <div class="col-lg-5 col-md-12 col-sm-12 mt-2">
+                    <div class="m-4 p-4 form_bg">
+                        <h2 class="text-center text-light">Sign Up</h2>
+                        <p class="tw-light text-center text-light">Please fill in this form to create an account.</p>
                     </div>
-                </div>
             </div>
         </div>
-        <div class="row" class="row_margins">
-            <div class="col-12 col-lg-7 col-md-12 col-sm-12 d-flex justify-content-center">
-                <div class="card border m-2 bg-light" id="mycard1">
-
-
-                <!-- this code check password and confirm password -->
-                <?php 
+        <div class="row d-flex justify-content-center" data-aos="zoom-in-up" data-aos-duration="2000">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                    <!-- this code check password and confirm password -->
+                    <?php
                     session_start();
-                    if(isset($_SESSION['pass_check'])){
+                    if (isset($_SESSION['pass_check'])) {
                         echo '<div class="alert alert-danger" role="alert">' . $_SESSION['pass_check'] . '</div>';
                         unset($_SESSION['pass_check']);
                     }
-                ?>
-                <!-- End php code -->
-
-                    <form action="signcode.php" method="post"  class="row g-3 p-4 needs-validation" novalidate>
-                        <div class="col-md-6">
-                            <label for="validationCustom01" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="validationCustom01" name="name" required>
+                    ?>
+                    <!-- End php code -->
+                    <div class="m-4 p-3 bg-light form_bg">
+                    <form action="signingcode.php" method="post" class="row p-4 needs-validation" id="passwordForm" onsubmit="return validateForm()"  novalidate>
+                        <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="input-group mt-3">
+                            <input type="text" class="form-control" id="validationCustom01"
+                                placeholder="Enter name" name="name"
+                                style="background-color: transparent;color: white;" required>
+                                <span class="custom-bottom-border "></span>
+                        </div>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom02" class="form-label">Age</label>
-                            <input type="number" class="form-control" id="validationCustom02" name="age" value="" required>
+                        <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="input-group mt-3 border-none">
+                            <input type="text" class="form-control" id="validationCustom01"
+                                placeholder="Enter age" name="age"
+                                style="background-color: transparent;color: white;" required>
+                                <span class="custom-bottom-border "></span>
+                        </div>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom03" class="form-label">Sex</label>
-                            <select class="form-select" id="validationDefault03" name="sex" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                            </select>
+                        <div class="col-lg-12 col-md-6 col-sm-12">
+                            <div class="input-group mt-3 border-none">
+                            <input type="text" class="form-control" id="validationCustom01"
+                                placeholder="Enter phone" name="phone"
+                                style="background-color: transparent;color: white;" required>
+                                <span class="custom-bottom-border "></span>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom05" class="form-label">Country</label>
-                            <input type="text" class="form-control" name="country" id="validationCustom05" required>
-                            <div class="valid-feedback">
-                                Please Enter a country name.
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-6">
-                            <label for="validationCustom05" class="form-label">City</label>
-                            <input type="text" class="form-control" name="city" id="validationCustom05" required>
-                            <div class="invalid-feedback">
-                                Please Enter a city name.
-                            </div>
-                        </div> -->
-                        <div class="col-md-6">
-                            <label for="validationCustom06" class="form-label">Phone</label>
-                            <input type="number" class="form-control" name="phone" id="validationCustom06" required>
                             <div class="invalid-feedback">
                                 Please Enter a Phone number.
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom07" class="form-label">Password</label>
-                            <input type="text" class="form-control" name="password" id="validationCustom07" required>
-                            <div class="invalid-feedback">
-                                Please Enter a Password.
-                            </div>
+                        <div class="col-lg-12 col-md-6 col-sm-12">
+                        <div class="input-group mt-3 border-none">
+                            <input type="text" class="form-control" id="validationCustom01"
+                                placeholder="Enter password" name="password"
+                                style="background-color: transparent;color: white;" required>
+                                <span class="custom-bottom-border "></span>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom08" class="form-label">Confirm Password</label>
-                            <input type="text" class="form-control" name="confirm-password" id="validationCustom08" required>
-                            <div class="invalid-feedback">
-                                Please Enter a Confirm Password.
-                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom08" class="form-label">Batting style</label>
-                            <select class="form-select" name="batting" id="validationDefault08" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Right hand</option>
-                            <option>Left hand</option>
-                            </select>
+                        <div class="col-lg-12 col-md-6 col-sm-12">
+                             <div class="input-group mt-3 border-none">
+                            <input type="text" class="form-control" id="validationCustom01"
+                                placeholder="Confirm password" name="confirm_password"
+                                style="background-color: transparent;color: white;" required>
+                                <span class="custom-bottom-border "></span>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom09" class="form-label">Bowling style</label>
-                            <select class="form-select" name="balling" id="validationDefault09" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Fast Bowling</option>
-                            <option>Spin Bowling</option>
-                            </select>
                         </div>
-                        <div class="col-md-6">
-                            <label for="validationCustom13" class="form-label">Playing Role</label>
-                            <select class="form-select" name="playing_role" id="validationDefault13" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Batsman</option>
-                            <option>Bowler</option>
-                            <option>All Rounder</option>
-                            <option>Keeper</option>
-                            <option>Captain</option>
-                            </select>
+                        <div class="col-12 my-2">
+                            <a href="user.php" class="text-decoration-none text-light">Already have an account login here!</a>
                         </div>
-                        <div class="col-md-12">
-                            <label for="validationCustom10" class="form-label">Address</label>
-                            <textarea type="text" class="form-control" name="address" id="validationCustom10" required></textarea>
-                            <div class="invalid-feedback">
-                                Please Enter your address.
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="agree_terms"  value="" id="invalidCheck" required>
-                                <label class="form-check-label" for="invalidCheck">
-                                    Agree to terms and conditions
-                                </label>
-                                <div class="invalid-feedback">
-                                    You must agree before submitting.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <a href="user.php" class="text-decoration-none">login Account!</a>
-                        </div>
-                        <div class="col-12">
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-primary" name="signup" type="submit">Sign Up</button>
-                            </div>
-                        </div>
+                            <button class="btn btn--liquidBtn btn-sm" name="signup" type="submit">
+                            <span>Sign Up</span>
+                            <div class="btn--liquid"></div>
+                        </button>
                     </form>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -175,32 +231,32 @@ include "includes/header4.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
-    
-    <!-- <script src="boostrap/js/bootstrap.min.js"></script> -->
-    <!-- <script src="boostrap/js/jquery-3.7.0.js"></script> -->
-
-    <!-- script for validation -->
+    <!-- for animator -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-       // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
+        AOS.init();
+    </script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
     </script>
 </body>
 
